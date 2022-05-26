@@ -5,11 +5,11 @@ on:
   workflow_dispatch:
  
 jobs:
-  qnode11_test:
+  qnode41_test:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./qnode11_app
+        working-directory: ./qnode41_app
     env:
       DJANGO_SECRET_KEY: test-key-not-good
       NAME_DB: node0db

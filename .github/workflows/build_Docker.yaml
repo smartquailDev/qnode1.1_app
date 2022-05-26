@@ -1,4 +1,4 @@
-name: SmartQuail Docker Build Apps QNODE11
+name: SmartQuail Docker Build Apps QNODE41
 
 on:
   workflow_call:
@@ -9,11 +9,11 @@ on:
     branches: [main]
  
 jobs:
-  test_qnode11_app:
-    uses: smartquailDev/qnode1.1_app/.github/workflows/test-qnode11_app.yaml@main
-  Docker_qnode11:
+  test_qnode41_app:
+    uses: smartquailDev/qnode4.1_app/.github/workflows/test-qnode41_app.yaml@main
+  Docker_qnode41:
     runs-on: ubuntu-latest
-    needs: [test_qnode11_app]
+    needs: [test_qnode41_app]
     env:
       DJANGO_SECRET_KEY: test-key-not-good
     steps:
@@ -25,15 +25,15 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Build container image
-      working-directory: ./qnode1.1_k8s
+      working-directory: ./qnode4.1_k8s
       run: | 
         docker build -f Dockerfile \
-            -t smartquail/qnode11_app:latest \
-            -t smartquail/qnode11_app:${GITHUB_SHA::2}-${GITHUB_RUN_ID::2} \
+            -t smartquail/qnode41_app:latest \
+            -t smartquail/qnode41_app:${GITHUB_SHA::2}-${GITHUB_RUN_ID::2} \
             .
     - name: Push Image
       run: | 
-        docker push smartquail/qnode11_app --all-tags
+        docker push smartquail/qnode41_app --all-tags
    
 
        
